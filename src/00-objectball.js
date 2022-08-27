@@ -84,3 +84,51 @@ function bigShoeRebounds() {
   return players()[biggestShoe].Rebounds;
 }
 // console.log(bigShoeRebounds());
+
+function mostPointsScored() {
+  return Object.keys(players()).reduce((a, b) => players()[a].Points > players()[b].Points ? a :b);
+}
+// console.log(mostPointsScored());
+
+function homeTeamPoints() {
+  const homePoints = [];
+  let players = homeTeam().players;
+  for (player in players) {
+    homePoints.push(players[player].Points);
+  }
+  return homePoints.reduce((prev, curr) => prev + curr, 0);
+}
+
+function awayTeamPoints() {
+  const awayPoints = [];
+  let players = awayTeam().players;
+  for (player in players) {
+    awayPoints.push(players[player].Points);
+  }
+  return awayPoints.reduce((prev, curr) => prev + curr, 0);
+}
+
+function winningTeam() {
+  return homeTeamPoints()>awayTeamPoints() ? homeTeam().teamName : awayTeam().teamName
+}
+// console.log(winningTeam());
+
+function playerNames() {
+  return Object.keys(players());
+}
+// playerNames();
+
+function playerWithLongestName() {
+  return Object.keys(players()).reduce((longestName, name) =>players()[longestName] > players()[name] ? longestName: name);
+}
+// console.log(playerWithLongestName());
+
+function mostSteals() {
+  return Object.keys(players()).reduce((a, b) => players()[a].Steals > players()[b].Steals ? a : b);
+}
+// console.log(mostSteals());
+
+function doesLongNameStealATon() {
+  return playerWithLongestName() === mostSteals() ? true : false;
+}
+// console.log(doesLongNameStealATon());
